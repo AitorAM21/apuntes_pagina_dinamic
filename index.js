@@ -2,9 +2,19 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-app.get('/', (req, res) => {
-  res.send('El lobo dice auu!')
-})
+let callback=(req, res)=>{
+
+
+    res.send(pagina)
+}
+
+app.get('/', callback)
+
+app.post('/', (req, res) => {
+    res.send('El lobo dice auu!')
+  })
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
