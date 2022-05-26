@@ -3,11 +3,16 @@ const ejs=require('ejs')
 const app = express()
 const port = 3000
 
+//express body json
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
+
+
 let callback=(req, res) =>{
     
     let queries={
-      frase:'Yipikayei hdp',
-      autor:'Bruce Willis'
+      frase:'Hola',
+      autor:'Yo'
     }
     ejs.renderFile('./templates/index.ejs',queries,{},(err,str)=>{
         if(err){
@@ -18,24 +23,28 @@ let callback=(req, res) =>{
 
 }
 
-app.get('/', callback)
+app.get('/',callback)
 
 let callInsertar=(req, res) =>{
-    ejs.renderFile('./templates/insertar.ejs',queries,{},(err,str)=>{
-        if(err){
-            console.log(err)
-        }
-    res.send(str)
-    })
-
-}
-
-app.get('/Insertar', callInsertar)
-
-app.post('/', (req, res) => {
-    res.send('El lobo dice auu!')
+  
+  
+  ejs.renderFile('./templates/insertar.ejs',queries,{},(err,str)=>{
+      if(err){
+          console.log(err)
+      }
+  res.send(str)
   })
+} 
+app.get('/insertar',callInsertar)
 
+let calllRecoger=(req,res)=>{
+const{query,params,body}=req
+  console.log('Query: ',query)
+  console.log('Params: ',params)
+  console.log('Body: ',body)
+  res.send('Hello World!')
+}
+app.post('/', calllRecoger)
 
 
 app.listen(port, () => {
