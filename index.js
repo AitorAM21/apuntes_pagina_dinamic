@@ -3,17 +3,19 @@ const ejs=require('ejs')
 const app = express()
 const port = 3000
 
-let callback=(req, res)=>{
-    let html='<b>oso</b>'
-    let data={
-        title:'frase aleatoria'
+let callback=(req, res) =>{
+    
+    let queries={
+      frase:'Hola',
+      autor:'Yo'
     }
-    let options={
-        
-    }
+    ejs.renderFile('./templates/index.ejs',queries,{},(err,str)=>{
+        if(err){
+            console.log(err)
+        }
+    res.send(str)
+    })
 
-    let pagina=ejs.render(html, data, options);
-    res.send(pagina)
 }
 
 app.get('/', callback)
