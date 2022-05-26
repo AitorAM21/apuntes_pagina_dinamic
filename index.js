@@ -6,8 +6,8 @@ const port = 3000
 let callback=(req, res) =>{
     
     let queries={
-      frase:'Hola',
-      autor:'Yo'
+      frase:'Yipikayei hdp',
+      autor:'Bruce Willis'
     }
     ejs.renderFile('./templates/index.ejs',queries,{},(err,str)=>{
         if(err){
